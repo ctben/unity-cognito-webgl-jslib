@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Unity WebGL Player | unity-cognito-client-master</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
+    <link rel="stylesheet" href="TemplateData/style.css" />
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script src="TemplateData/amazon-cognito-auth.min.js"></script>
+    <script src="TemplateData/amazon-cognito-identity.min.js"></script>
+    <script src="TemplateData/aws-sdk.min.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate(
+        "unityContainer",
+        "Build/built.json",
+        { onProgress: UnityProgress }
+      );
+              function Show_VDO(url_id) {
+            var video = document.getElementById('video');
+            var b_hide_all = document.getElementById('b_hide_all');
+            var b_hide = document.getElementById('b_hide');
+            switch (url_id) {
+                case "1": video.src = '.mp4'; break;
+                           }
+            video.play();
+            video.style.display = "block";
+            b_hide_all.style.display = "block";
+            b_hide.style.display = "block";
+        }
+
+        function Hide_VDO() {
+            var video = document.getElementById('video');
+            var b_hide_all = document.getElementById('b_hide_all');
+            var b_hide = document.getElementById('b_hide');
+            video.style.display = "none";
+            b_hide_all.style.display = "none";
+            b_hide.style.display = "none";
+            video.pause();
+        }
+    </script>
+  </head>
+  <body style="margin:0">
+    <div class="webgl-content" style="width: 100%; height: 100%">
+        <div id="unityContainer" style="width: 100%; height: 100%"></div>    
+    </div>
+   <video autoplay controls id="video"  width="80%" style="position: absolute; display:none; 
+   margin: 0;
+   top: 50%;
+   left: 50%;
+   -ms-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+   z-index:1;
+  ">
+      
+   </video>
+  <button id="b_hide_all" style="position:absolute; width:99%; height:99%;display:none; 
+   margin: 0;
+   top: 50%;
+   left: 50%;
+   -ms-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+   background-color:black;
+   opacity:0.8;
+" onClick="Hide_VDO();"></button>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <button id="b_hide" style="position: absolute;  background-color: #555; font-size: 30px; width:80px; height:80px;z-index:2;display:none;" onClick="Hide_VDO();"><i class="fa fa-close"></button>
+  <button style="position: absolute;left: 20%;top: 150px;z-index:2;display:none;" onClick="Show_VDO(1);">Show Video</button>
+  </body>
+</html>
