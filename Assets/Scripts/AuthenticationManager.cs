@@ -9,6 +9,7 @@ using System.Net;
 //add by chen
 using Newtonsoft.Json;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json.Linq;
 ////////////////////////////////////////////////////////////
 
 public class AuthenticationManager : MonoBehaviour
@@ -27,8 +28,6 @@ public class AuthenticationManager : MonoBehaviour
    // private static string _userid = "";
    // private CognitoUser _user;
 
-   // public InputField userName;
-   // public InputField password;
    public InputField emailFieldLogin;
    public InputField passwordFieldLogin;
    private GameObject _loading;
@@ -108,7 +107,10 @@ public class AuthenticationManager : MonoBehaviour
         {
             try
             {
+                Debug.Log("JsGetToken converting token"+data);
+                // Debug.Log("_token.idToken.jwtToken"+data.idToken);
                 _token = JsonConvert.DeserializeObject<CognitoIdentityModel>(data);
+                Debug.Log("JsGetToken token: "+_token.idToken.jwtToken);
                 if (!string.IsNullOrEmpty(_token.idToken.jwtToken) && !string.IsNullOrEmpty(_token.accessToken.jwtToken))
                 {
                     Debug.Log("Auth token generated");
@@ -121,12 +123,13 @@ public class AuthenticationManager : MonoBehaviour
             }
             catch (Exception e)
             {
+                Debug.Log("JsGetToken error");
                 Debug.LogError(e);
             }
         }
         else
         {
-            Debug.LogError("Empty data recieved");
+            Debug.LogError("Empty data received");
         }
     }
     public void JsLogin(string data)
@@ -153,7 +156,7 @@ public class AuthenticationManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Empty data recieved");
+            Debug.LogError("JsLogin Empty data received");
         }
     }
     ////////////////////////////////////////////////////////////
