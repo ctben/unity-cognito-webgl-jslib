@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // This script just demonstrates we can use credentials from an authenticated user to call AWS APIs
 public class LambdaManager : MonoBehaviour
 {
-   public Button mainMenuButton;
+   // public Button mainMenuButton;
 
    // private AuthenticationManager _authenticationManager;
    // private string _lambdaFunctionName = "YOUR_LAMBDA_FUNCTION_NAME";
@@ -50,10 +50,11 @@ public class LambdaManager : MonoBehaviour
 
    void Start()
    {
+      Debug.Log("MainMenu");
       // ignore setup during switch back to login scene
-      if (mainMenuButton != null)
-      {
-         mainMenuButton.onClick.AddListener(OnMainMenuClick);
-      }
+      // if (mainMenuButton != null)
+      // {
+      //    mainMenuButton.onClick.AddListener(OnMainMenuClick);
+      // }
    }
 }

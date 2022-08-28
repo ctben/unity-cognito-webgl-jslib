@@ -30,7 +30,7 @@ public class AuthenticationManager : MonoBehaviour
 
    public InputField emailFieldLogin;
    public InputField passwordFieldLogin;
-   private GameObject _loading;
+   public UIInputManager _UiManager;
 
    //add by chen
    private static Credentials _cred;
@@ -82,9 +82,8 @@ public class AuthenticationManager : MonoBehaviour
         Debug.Log("CognitoHelper::siginIn");
         _cred = new Credentials();
         _token = new CognitoIdentityModel();
-      // Debug.Log(data);
-      // _userinfo = JsonConvert.DeserializeObject<JsUserInfo>(data);
-      Debug.Log("userName.text: "+emailFieldLogin.text);
+
+        Debug.Log("userName.text: "+emailFieldLogin.text);
 
         if (string.IsNullOrEmpty(emailFieldLogin.text))
         {
@@ -98,7 +97,6 @@ public class AuthenticationManager : MonoBehaviour
         {
             CognitoSignIn(userPoolId, AppClientID, emailFieldLogin.text, passwordFieldLogin.text, "OptionsContainer", "JsGetToken");
         }
-          _loading.SetActive(false);
     }
     public void JsGetToken(string data)
     {
@@ -108,7 +106,6 @@ public class AuthenticationManager : MonoBehaviour
             try
             {
                 Debug.Log("JsGetToken converting token"+data);
-                // Debug.Log("_token.idToken.jwtToken"+data.idToken);
                 _token = JsonConvert.DeserializeObject<CognitoIdentityModel>(data);
                 Debug.Log("JsGetToken token: "+_token.idToken.jwtToken);
                 if (!string.IsNullOrEmpty(_token.idToken.jwtToken) && !string.IsNullOrEmpty(_token.accessToken.jwtToken))
@@ -146,7 +143,8 @@ public class AuthenticationManager : MonoBehaviour
                     Debug.Log(_cred.AccessKeyId);
                     Debug.Log(_cred.SecretKey);
                     Debug.Log(_cred.SessionToken);
-                     Debug.Log("Login Completed!");
+                    Debug.Log("Login Completed!");
+                    _UiManager.DisplayComponentsFromAuthStatus(true);
                 }
             }
             catch (Exception e)

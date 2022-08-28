@@ -31,7 +31,7 @@ public class UIInputManager:MonoBehaviour
    private List<Selectable> _fields;
    private int _selectedFieldIndex = -1;
 
-   private void DisplayComponentsFromAuthStatus(bool authStatus)
+   public void DisplayComponentsFromAuthStatus(bool authStatus)
    {
       if (authStatus)
       {
